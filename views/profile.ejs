@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile</title>
-</head>
-<body>
-    <h2>hey</h2>
-</body>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div class="w-full h-screen bg-black text-white p-3">
+      <div class="flex justify-between">
+        <h2 class="h-10 ml-3 text-3xl">Hello,<%= user.name%> 👋🏻</h2>
+      <button class="px-5 py-1 bg-sky-400 mr-4 text-black hover:bg-sky-300 rounded-md">
+        <a href="/">Home</a>
+      </button>
+      </div>
+      <form
+        action="/post"
+        method="post"
+        class="ml-2 mt-4 p-4 border-3 border-zinc-600"
+      >
+        <h1 class="text-2xl text-yellow-400">Write your post</h1>
+        <textarea
+          name="content"
+          class="mt-2 bg-zinc-600 block resize-none w-full h-30 p-2"
+          placeholder="What's your thought ?"
+        ></textarea>
+        <input
+          type="submit"
+          class="mt-2 rounded-md hover:bg-blue-700 px-5 py-2 bg-blue-600"
+          value="Create post"
+        />
+      </form>
+      <h1 class="text-2xl text-yellow-600 mt-4">Your posts</h1>
+      <%user.post.reverse().forEach((item)=>{ %>
+      <div class="bg-zinc-600 mt-3 p-3 w-full min-h-25">
+        <div class="flex justify-between">
+          <h1>@<%=user.username%></h1>
+          <div>
+            <button class="px-5 py-1 bg-red-400 hover:bg-red-300 rounded-md">
+              <a href="/like">Like</a>
+            </button>
+            <button
+              class="px-5 py-1 ml-3 bg-blue-600 hover:bg-blue-700 rounded-md"
+            >
+              <a href="/edit">Edit</a>
+            </button>
+          </div>
+        </div>
+        <p class="mt-1"><%=item.data%></p>
+      </div>
+      <%})%>
+    </div>
+  </body>
 </html>

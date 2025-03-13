@@ -1,22 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mini project | home </title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="w-full h-screen bg-black text-white">
-          <h1 class="text-center w-full text-3xl p-5">Mini project</h1>
-          <form action="/register" method="post" class="w-160 h-80 bg-transparent border-3 border-sky-500 flex flex-col justify-between p-4 m-auto mt-6">
-            <input type="text" name="username" placeholder="Enter Username" class="h-10 bg-zinc-600 p-2 outline-none rounded-md">
-            <input type="text" name="name" placeholder="Enter Name" class="h-10 bg-zinc-600 p-2 outline-none rounded-md">
-            <input type="number" name="age" placeholder="Enter Age" class="h-10 bg-zinc-600 p-2 outline-none rounded-md ">
-            <input type="email" name="email" placeholder="Enter E-Mail" class="h-10 bg-zinc-600 p-2 outline-none rounded-md">
-            <input type="password" name="password" placeholder="Enter Password" class="h-10 bg-zinc-600 p-2 outline-none rounded-md">
-            <input type="submit" value="Create user" class="h-10 bg-blue-600 hover:bg-blue-700 px-3 py-2  outline-none rounded-md">
-          </form>
+      <h1 class="text-center w-full text-3xl p-5">POST DATA</h1>
+      <%if(!valid){%>
+      <div class="mt-8 m-auto bg-zinc-300 w-100 p-5">
+        <button
+          class="block h-10 bg-zinc-700 hover:bg-zinc-500 px-6 py-1 m-auto outline-none rounded-md"
+        >
+          <a href="/signup">Sign up</a>
+        </button>
+        <label class="inline text-black text-xl mt-1">
+          If already have an account ? -
+        </label>
+        <button
+          class="h-10 bg-zinc-600 hover:bg-zinc-700 px-3 py-2 m-2 outline-none rounded-md"
+        >
+          <a href="/login">Sign in</a>
+        </button>
+      </div>
+      <%}else{%>
+      <div class="p-6">
+        <div class="flex justify-between">
+          <h1 class="text-2xl text-yellow-600 ">Posts :</h1>
+          <div >
+            <button class="px-5 py-1 bg-red-400 hover:bg-red-300 rounded-md">
+              <a href="/logout">Sign out</a>
+            </button>
+            <button
+              class="px-5 py-1 ml-3 bg-blue-600 hover:bg-blue-700 rounded-md"
+            >
+              <a href="/profile">Profile</a>
+            </button>
+          </div>
+        </div>
+        <%posts.forEach((ele)=>{%>
+        <div class="bg-zinc-600 mt-3 p-3 w-full min-h-25">
+          <div class="flex justify-between">
+            <h1>@<%=ele.user.username%></h1>
+          </div>
+          <p class="mt-1"><%=ele.data%></p>
+        </div>
+        <%})%>
+      </div>
+      <%}%>
     </div>
-</body>
+  </body>
 </html>
